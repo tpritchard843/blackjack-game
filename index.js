@@ -16,6 +16,20 @@ let playerEl = document.getElementById("player-el")
 
 playerEl.textContent = player.name + ": $" + player.chips
 
+let buttonEl = document.getElementById("dynamic-btn")
+
+buttonEl.addEventListener("click", function() {
+    console.log(hasBlackJack)
+    if (isAlive === false || hasBlackJack === true) {
+        buttonEl.innerHTML = "NEW CARD"
+        startGame()
+    } else if (isAlive === true) {
+        buttonEl.innerHTML = "START GAME" //button is changing to START GAME When I'm alive. logical error exists here
+        newCard()
+    }
+})
+
+
 function getRandomCard() {
     let randomNumber = Math.floor( Math.random()*13 ) + 1
     if (randomNumber > 10) {
@@ -34,6 +48,7 @@ function getRandomCard() {
 function startGame() {
     isAlive = true
     firstHand = true
+    hasBlackJack = false
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
     cards = [firstCard, secondCard]
@@ -53,6 +68,8 @@ function renderGame() {
     } else if (sum === 21) {
         message = "You've got Blackjack!"
         hasBlackJack = true
+        isAlive = false
+        buttonEl.innerHTML = "START GAME"
     } else {
         message = "You're out of the game!"
         isAlive = false
@@ -70,5 +87,3 @@ function newCard() {
     }
     firstHand = false
 }
-
-
