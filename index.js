@@ -21,13 +21,14 @@ let buttonEl = document.getElementById("dynamic-btn")
 buttonEl.addEventListener("click", function() {
     console.log(hasBlackJack)
     if (isAlive === false || hasBlackJack === true) {
-        buttonEl.innerHTML = "NEW CARD"
+        renderGame()
         startGame()
     } else if (isAlive === true) {
-        buttonEl.innerHTML = "START GAME" //button is changing to START GAME When I'm alive. logical error exists here
+        renderGame()
         newCard()
     }
 })
+
 
 
 function getRandomCard() {
@@ -65,6 +66,7 @@ function renderGame() {
     sumEl.textContent = "Sum: " + sum
     if (sum <= 20) {
         message = "Do you want to draw a new card?"
+        buttonEl.innerHTML = "NEW CARD"
     } else if (sum === 21) {
         message = "You've got Blackjack!"
         hasBlackJack = true
@@ -73,6 +75,7 @@ function renderGame() {
     } else {
         message = "You're out of the game!"
         isAlive = false
+        buttonEl.innerHTML = "START GAME"
     }
     messageEl.textContent = message
 }
