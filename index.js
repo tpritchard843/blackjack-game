@@ -70,3 +70,5 @@ function newCard() {
     }
     firstHand = false
 }
+
+
