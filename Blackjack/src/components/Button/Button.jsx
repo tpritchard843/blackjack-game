@@ -1,7 +1,7 @@
-export default function Button() {
+export default function Button(props) {
   return (
     <div>
-      <button className="btn">Start Game</button>
+      <button onClick={props.onClick} text={props.text} className="btn">{props.text}</button>
     </div>
   )
 }
